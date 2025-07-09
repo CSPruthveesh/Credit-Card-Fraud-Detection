@@ -26,7 +26,6 @@ This project focuses on detecting fraudulent transactions using machine learning
   * Logistic Regression
   * Decision Tree
   * Random Forest
-* 🛠️ **Hyperparameter Tuning** using `GridSearchCV`
 * 📉 **Performance Evaluation**: Confusion matrix, ROC-AUC, precision, recall, F1-score
 * 🔄 **Model Comparison** before and after SMOTE & tuning
 
@@ -38,4 +37,4 @@ This project focuses on detecting fraudulent transactions using machine learning
 
 ---
 
-Would you like me to generate a `README.md` file from this or add badges (e.g., dataset size, last update, license)?
+

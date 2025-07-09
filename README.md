@@ -3,6 +3,7 @@
 Dataset: Kaggle Credit Card Fraud Dataset
 
 🔹 Week 1: Project Setup & Understanding
+
 ✅ Download & explore the dataset
 
 ✅ Read the data description (PCA-transformed features + Time, Amount, Class)
@@ -16,6 +17,7 @@ Dataset: Kaggle Credit Card Fraud Dataset
 Exploratory notes on data structure and project goals
 
 🔹 Week 2: Exploratory Data Analysis (EDA)
+
 ✅ Visualize class distribution
 
 ✅ Analyze “Time” and “Amount” feature distribution
@@ -31,6 +33,7 @@ Exploratory notes on data structure and project goals
 Visual EDA notebook (with insights)
 
 🔹 Week 3: Data Preprocessing
+
 ✅ StandardScaler/RobustScaler for “Amount” and “Time”
 
 ✅ Split data into Train/Test sets (stratified)
@@ -42,6 +45,7 @@ Visual EDA notebook (with insights)
 Cleaned and scaled dataset, preprocessing script
 
 🔹 Week 4: Baseline Models
+
 ✅ Train Logistic Regression (baseline)
 
 ✅ Train Decision Tree & Random Forest
@@ -55,6 +59,7 @@ Cleaned and scaled dataset, preprocessing script
 Baseline model notebook with metrics comparison
 
 🔹 Week 5: Handle Class Imbalance
+
 ✅ Apply SMOTE / UnderSampling / SMOTE+ENN
 
 ✅ Retrain models and compare metrics
@@ -66,6 +71,7 @@ Baseline model notebook with metrics comparison
 Notebook with models trained on balanced data
 
 🔹 Week 6: Advanced Models & Tuning
+
 ✅ Try XGBoost or LightGBM
 
 ✅ Use GridSearchCV/RandomizedSearch for hyperparameter tuning
@@ -77,6 +83,7 @@ Notebook with models trained on balanced data
 Final tuned model with comparison charts
 
 🔹 Week 7: Model Explainability
+
 ✅ SHAP values for feature importance
 
 ✅ Plot most influential features for fraud prediction
@@ -88,6 +95,7 @@ Final tuned model with comparison charts
 Model explainability notebook + Summary plot
 
 🔹 Week 8: Presentation & Deployment
+
 ✅ Prepare a Streamlit dashboard (optional)
 
 ✅ Create a project report (Markdown or PDF)

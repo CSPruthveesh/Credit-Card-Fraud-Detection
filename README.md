@@ -12,9 +12,7 @@ Dataset: Kaggle Credit Card Fraud Dataset
 
 ✅ Setup GitHub repo and README
 
-🛠️ Deliverable:
-
-Exploratory notes on data structure and project goals
+🛠️ Deliverable: Exploratory notes on data structure and project goals
 
 🔹 Week 2: Exploratory Data Analysis (EDA)
 
@@ -28,9 +26,7 @@ Exploratory notes on data structure and project goals
 
 ✅ Check for missing values (there are none, but confirm)
 
-📊 Deliverable:
-
-Visual EDA notebook (with insights)
+📊 Deliverable: Visual EDA notebook (with insights)
 
 🔹 Week 3: Data Preprocessing
 
@@ -40,9 +36,7 @@ Visual EDA notebook (with insights)
 
 ✅ Save preprocessing code as reusable functions
 
-🔁 Deliverable:
-
-Cleaned and scaled dataset, preprocessing script
+🔁 Deliverable: Cleaned and scaled dataset, preprocessing script
 
 🔹 Week 4: Baseline Models
 
@@ -54,9 +48,7 @@ Cleaned and scaled dataset, preprocessing script
 
 ✅ Build a classification report table
 
-🧪 Deliverable:
-
-Baseline model notebook with metrics comparison
+🧪 Deliverable: Baseline model notebook with metrics comparison
 
 🔹 Week 5: Handle Class Imbalance
 
@@ -66,9 +58,7 @@ Baseline model notebook with metrics comparison
 
 ✅ Use confusion matrix and ROC-AUC to evaluate fraud capture
 
-📉 Deliverable:
-
-Notebook with models trained on balanced data
+📉 Deliverable: Notebook with models trained on balanced data
 
 🔹 Week 6: Advanced Models & Tuning
 
@@ -78,9 +68,7 @@ Notebook with models trained on balanced data
 
 ✅ Compare results with baseline models
 
-⚙️ Deliverable:
-
-Final tuned model with comparison charts
+⚙️ Deliverable: Final tuned model with comparison charts
 
 🔹 Week 7: Model Explainability
 
@@ -90,9 +78,7 @@ Final tuned model with comparison charts
 
 ✅ Interpret model predictions for a few examples
 
-📌 Deliverable:
-
-Model explainability notebook + Summary plot
+📌 Deliverable: Model explainability notebook + Summary plot
 
 🔹 Week 8: Presentation & Deployment
 
@@ -102,6 +88,4 @@ Model explainability notebook + Summary plot
 
 ✅ Add to GitHub with README, requirements.txt, and visuals
 
-🎯 Deliverable:
-
-Complete portfolio project, GitHub link ready for resume
+🎯 Deliverable: Complete portfolio project, GitHub link ready for resume

@@ -1,9 +1,4 @@
 # Credit-Card-Fraud-Detection
-Absolutely! Here's a **brief introduction and description** you can use for your **GitHub repository** for the **Credit Card Fraud Detection Project**:
-
----
-
-## 🔍 Credit Card Fraud Detection using Machine Learning
 
 This project focuses on detecting fraudulent transactions using machine learning techniques on an imbalanced dataset. The goal is to build models that can **identify frauds with high recall** while minimizing false alarms. The project follows a **structured 8-week roadmap** covering data exploration, preprocessing, model building, evaluation, and hyperparameter tuning.
 

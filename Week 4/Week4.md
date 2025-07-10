@@ -66,13 +66,6 @@ A model can achieve 99%+ accuracy by predicting all transactions as **non-fraud*
 
 ---
 
-## 📁 Assets Produced
-
-- ✅ Trained models: Logistic Regression, Decision Tree, Random Forest  
-- ✅ Evaluation metrics & ROC curve visualizations  
-- ✅ Comparison of model performance by class
-
----
 
 ## 📌 Takeaway
 

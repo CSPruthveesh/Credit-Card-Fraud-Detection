@@ -4,9 +4,9 @@
     -To explore the dataset’s structure, understand feature distributions, and identify patterns distinguishing fraud from non-fraud transactions. This helps inform preprocessing and model design in later stages.
 
 ## 📊 Key Insights
-  **Class Imbalance Confirmed:**
-          -Only ~0.17% of transactions are fraudulent.
-          -Plotted class distribution using a log-scaled bar chart to better visualize the minority class.
+    -**Class Imbalance Confirmed:**
+          Only ~0.17% of transactions are fraudulent.
+          Plotted class distribution using a log-scaled bar chart to better visualize the minority class.
 
 Time Feature:
 

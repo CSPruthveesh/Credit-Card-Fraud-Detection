@@ -5,8 +5,8 @@
 
 ## 📊 Key Insights
     -**Class Imbalance Confirmed:**
-          Only ~0.17% of transactions are fraudulent.
-          Plotted class distribution using a log-scaled bar chart to better visualize the minority class.
+        Only ~0.17% of transactions are fraudulent.
+        Plotted class distribution using a log-scaled bar chart to better visualize the minority class.
 
 Time Feature:
 

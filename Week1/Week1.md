@@ -5,7 +5,7 @@ To set up the project environment, load and explore the dataset, and define the 
 ----
 ## 📁 Setup & Environment
      -Created a structured project directory with folders for data/, notebooks/, src/, models/, and reports/
--Installed required Python packages: pandas, numpy, matplotlib, seaborn
+     -Installed required Python packages: pandas, numpy, matplotlib, seaborn
 ----
 ## 📦 Dataset Used
 -Source: Kaggle Credit Card Fraud Detection

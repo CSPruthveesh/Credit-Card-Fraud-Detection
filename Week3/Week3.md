@@ -24,14 +24,3 @@ Prepare the dataset for model training by scaling features and splitting data in
 - Applied an 80/20 split
 - Verified that the fraud ratio (~0.17%) was preserved in both training and test sets
 
-#### ✅ Sanity Checks Performed
-- Verified distribution of scaled features
-- Confirmed correct shapes and class balance in both `X_train/y_train` and `X_test/y_test`
-
----
-
-### 📁 Assets Produced
-
-- `X_train.csv`, `X_test.csv`, `y_train.csv`, `y_test.csv` *(optional: saved for reuse)*  
-- Updated dataframe with scaled features ready for modeling
-

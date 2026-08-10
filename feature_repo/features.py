@@ -4,13 +4,15 @@ from feast import (
     FeatureView,
     Field,
     FileSource,
+    ValueType,
 )
 from feast.types import Float32, Int64
 
-# Define the primary key entity for transactions
+# Define the primary key entity for transactions with mandatory value_type specified
 transaction_entity = Entity(
     name="transaction_id",
     join_keys=["tx_id"],
+    value_type=ValueType.INT64,
     description="Unique transaction identifier"
 )
 
@@ -18,7 +20,7 @@ transaction_entity = Entity(
 offline_source = FileSource(
     name="transactions_source",
     path="d:/COLLEGE PREP/Self Projects/data/processed_transactions.parquet",
-    event_timestamp_column="event_timestamp",
+    timestamp_field="event_timestamp",  # Updated for Feast 0.31+ compatibility
     created_timestamp_column="created_timestamp",
 )
 

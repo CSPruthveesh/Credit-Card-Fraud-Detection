@@ -28,8 +28,8 @@ def load_model():
         # Create a mock classifier if model file is not found (for demonstration/health readiness)
         from sklearn.dummy import DummyClassifier
         model = DummyClassifier(strategy="stratified")
-        # Dummy fit for 33 features (V1-V28, and scaled versions of Amount, Time, Time_Delta, Last_5_Tx_Time_Span, Rolling_Mean_Amount_5)
-        model.fit(np.zeros((10, 33)), np.zeros(10))
+        # Dummy fit with both classes present to ensure predict_proba yields 2 columns
+        model.fit(np.zeros((10, 33)), np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1]))
         print("Warning: model.joblib not found. Initialized placeholder model for API start.")
 
 class TransactionPayload(BaseModel):

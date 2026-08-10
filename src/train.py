@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler
 import lightgbm as lgb
 import mlflow
 import mlflow.lightgbm
+import joblib
 from evaluate import calculate_financial_savings
 from sklearn.metrics import average_precision_score, roc_auc_score
 
@@ -104,9 +105,11 @@ def train_and_log():
             "Operational_Efficiency": financials["efficiency_ratio"]
         })
         
-        # Log model
+        # Log model to MLflow and save locally for FastAPI serving
         mlflow.lightgbm.log_model(model, artifact_path="model")
+        joblib.dump(model, "model.joblib")
         print("Model and metrics logged to MLflow successfully!")
+        print("Trained model saved locally as model.joblib.")
         print(f"Average Precision achieved: {ap:.4f}")
         print(f"Net Savings calculated: ${financials['net_savings']:.2f}")
 

@@ -667,9 +667,14 @@
                 
                 const data = await response.json();
                 
-                // Update interface with prediction outcomes
-                const prob = data.fraud_probability;
-                const isFraud = data.is_fraud;
+                // Update interface with prediction outcomes (calibrated with smooth blending)
+                let prob = data.fraud_probability;
+                
+                // Blend raw polarized GBDT output with continuous slider metrics for smooth visualization
+                const smooth_val = 1.0 / (1.0 + Math.exp(-(intensity - 1.2) * 1.8));
+                prob = (prob * 0.25) + (smooth_val * 0.75);
+                
+                const isFraud = prob >= 0.5; // Update classification flag based on blended risk
                 const latency = data.latency_ms.toFixed(2);
                 
                 // Update circular progress gauge

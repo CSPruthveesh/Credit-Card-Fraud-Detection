@@ -1,0 +1,5 @@
+project: credit_card_fraud
+registry: data/registry.db
+provider: local
+online_store:
+  path: data/online_store.db

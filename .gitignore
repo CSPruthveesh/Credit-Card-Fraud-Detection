@@ -1,0 +1,21 @@
+# Data files
+creditcard.csv
+*.csv
+*.parquet
+
+# Python cache and checkpoints
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# MLflow run directories
+mlruns/
+
+# Serialized models
+*.joblib
+*.pkl
+*.onnx
+
+# Feast Feature Store local database files
+feature_repo/data/
+*.db

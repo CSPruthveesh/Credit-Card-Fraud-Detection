@@ -2,6 +2,7 @@ import os
 import joblib
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
 app = FastAPI(
@@ -97,3 +98,15 @@ async def health():
         "status": "healthy",
         "model_loaded": model is not None
     }
+
+@app.get("/", response_class=HTMLResponse)
+async def serve_dashboard():
+    """
+    Serves the interactive Model Health & Playground HTML dashboard.
+    """
+    template_path = os.path.join("src", "templates", "dashboard.html")
+    if not os.path.exists(template_path):
+        raise HTTPException(status_code=404, detail="Dashboard template not found.")
+    with open(template_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+    return HTMLResponse(content=html_content, status_code=200)

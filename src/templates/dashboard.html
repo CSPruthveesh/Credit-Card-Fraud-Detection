@@ -403,6 +403,32 @@
             color: var(--primary);
             text-decoration: none;
         }
+
+        .num-input {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            border-radius: 0.375rem;
+            padding: 0.25rem 0.5rem;
+            width: 90px;
+            text-align: right;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.15s ease;
+        }
+        .num-input:focus {
+            border-color: var(--primary);
+        }
+        /* Hide spin buttons for clean look */
+        .num-input::-webkit-outer-spin-button,
+        .num-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .num-input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 <body>
@@ -454,38 +480,38 @@
 
             <!-- Amount Input -->
             <div class="form-group">
-                <div class="form-label">
+                <div class="form-label" style="align-items: center;">
                     <span>Transaction Amount ($)</span>
-                    <span class="label-val" id="val-amount">$ 150</span>
+                    <input type="number" id="input-num-amount" min="1" max="5000" value="150" class="num-input" oninput="syncInputs('amount', this.value)">
                 </div>
-                <input type="range" id="input-amount" min="1" max="5000" value="150" oninput="updateVal('amount', '$ ' + this.value)">
+                <input type="range" id="input-amount" min="1" max="5000" value="150" oninput="syncInputs('amount', this.value)">
             </div>
 
             <!-- Time Delta Input -->
             <div class="form-group">
-                <div class="form-label">
+                <div class="form-label" style="align-items: center;">
                     <span>Time Delta (Seconds since last transaction)</span>
-                    <span class="label-val" id="val-timedelta">120 sec</span>
+                    <input type="number" id="input-num-timedelta" min="0" max="7200" value="120" class="num-input" oninput="syncInputs('timedelta', this.value)">
                 </div>
-                <input type="range" id="input-timedelta" min="0" max="7200" value="120" oninput="updateVal('timedelta', this.value + ' sec')">
+                <input type="range" id="input-timedelta" min="0" max="7200" value="120" oninput="syncInputs('timedelta', this.value)">
             </div>
 
             <!-- Time Span of Last 5 Tx -->
             <div class="form-group">
-                <div class="form-label">
+                <div class="form-label" style="align-items: center;">
                     <span>Last 5 Transactions Duration (Seconds)</span>
-                    <span class="label-val" id="val-span">600 sec</span>
+                    <input type="number" id="input-num-span" min="0" max="86400" value="600" class="num-input" oninput="syncInputs('span', this.value)">
                 </div>
-                <input type="range" id="input-span" min="0" max="86400" value="600" oninput="updateVal('span', this.value + ' sec')">
+                <input type="range" id="input-span" min="0" max="86400" value="600" oninput="syncInputs('span', this.value)">
             </div>
 
             <!-- Rolling Mean Amount of Last 5 Tx -->
             <div class="form-group">
-                <div class="form-label">
+                <div class="form-label" style="align-items: center;">
                     <span>Rolling Mean Amount of Last 5 Transactions ($)</span>
-                    <span class="label-val" id="val-meanamount">$ 200</span>
+                    <input type="number" id="input-num-meanamount" min="1" max="5000" value="200" class="num-input" oninput="syncInputs('meanamount', this.value)">
                 </div>
-                <input type="range" id="input-meanamount" min="1" max="5000" value="200" oninput="updateVal('meanamount', '$ ' + this.value)">
+                <input type="range" id="input-meanamount" min="1" max="5000" value="200" oninput="syncInputs('meanamount', this.value)">
             </div>
 
             <div class="button-group">
@@ -516,9 +542,21 @@
     </footer>
 
     <script>
-        // Update label text dynamically
-        function updateVal(id, val) {
-            document.getElementById('val-' + id).innerText = val;
+        // Synchronize range slider and numeric inputs
+        function syncInputs(id, val) {
+            let numVal = parseFloat(val);
+            if (isNaN(numVal)) return;
+
+            const slider = document.getElementById('input-' + id);
+            const numInput = document.getElementById('input-num-' + id);
+            
+            const min = parseFloat(slider.min);
+            const max = parseFloat(slider.max);
+            if (numVal < min) numVal = min;
+            if (numVal > max) numVal = max;
+
+            slider.value = numVal;
+            numInput.value = numVal;
         }
 
         // Initialize Ledger Log with some mock data

@@ -631,13 +631,14 @@
             // Amount ratio factor: scales if purchase exceeds typical rolling average history
             const ratio_factor = amt_ratio > 1.5 ? (amt_ratio - 1.5) * 0.5 : 0.0;
 
-            // Apply continuous mathematical perturbations
-            features[16] = 0.2 - (amt_factor * 1.5) - (ratio_factor * 0.8); // V17 (negative correlation)
-            features[13] = 0.1 - (speed_factor * 0.8) - (amt_factor * 1.0); // V14 (negative correlation)
-            features[11] = -0.1 - (speed_factor * 0.7);                      // V12 (negative correlation)
-            features[9] = 0.0 - (amt_factor * 0.8);                         // V10 (negative correlation)
-            features[3] = -0.2 + (ratio_factor * 0.6) + (speed_factor * 0.5); // V4 (positive correlation)
-            features[10] = -0.1 + (speed_factor * 0.4);                     // V11 (positive correlation)
+            // Apply continuous mathematical perturbations with a dampener to prevent over-polarization
+            const dampener = 2.5;
+            features[16] = 0.2 - ((amt_factor * 1.5) + (ratio_factor * 0.8)) / dampener; // V17 (negative correlation)
+            features[13] = 0.1 - ((speed_factor * 0.8) + (amt_factor * 1.0)) / dampener; // V14 (negative correlation)
+            features[11] = -0.1 - (speed_factor * 0.7) / dampener;                       // V12 (negative correlation)
+            features[9] = 0.0 - (amt_factor * 0.8) / dampener;                          // V10 (negative correlation)
+            features[3] = -0.2 + ((ratio_factor * 0.6) + (speed_factor * 0.5)) / dampener; // V4 (positive correlation)
+            features[10] = -0.1 + (speed_factor * 0.4) / dampener;                      // V11 (positive correlation)
             
             // Append scaled numerical columns
             features.push(scaled_Amount);

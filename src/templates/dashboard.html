@@ -581,24 +581,25 @@
             // 2. Velocity multiplier (high speed = small delta)
             const velocity_mult = timedelta < 10 ? 5.0 : (timedelta < 60 ? 2.5 : (timedelta < 300 ? 1.2 : 0.0));
 
-            // Perturb key PCA columns based on fraud patterns (negatively correlated V17, V14, V12, V10; positively correlated V4, V11)
-            if (amount > 1000 || amt_ratio > 10 || velocity_mult > 1) {
-                // High risk characteristics present
-                features[16] = -3.0 - (amount / 1000.0) - (amt_ratio / 5.0); // V17
-                features[13] = -4.0 - (velocity_mult * 1.5) - (amount / 1500.0); // V14
-                features[11] = -3.5 - (velocity_mult * 1.2); // V12
-                features[9] = -3.0 - (amount / 2000.0); // V10
-                features[3] = 2.5 + (amt_ratio / 10.0) + (velocity_mult * 0.8); // V4
-                features[10] = 2.0 + (velocity_mult * 0.5); // V11
-            } else {
-                // Legitimate but slightly perturbed baseline
-                features[16] = 0.2;
-                features[13] = 0.1;
-                features[11] = -0.1;
-                features[9] = 0.0;
-                features[3] = -0.2;
-                features[10] = -0.1;
-            }
+            // Perturb key PCA columns continuously based on fraud patterns (V17, V14, V12, V4)
+            // This ensures a smooth transition from Approved (Green) to Warning (Yellow) to Alert (Red)
+            
+            // Speed factor: increases as time delta drops below 10 minutes (600s)
+            const speed_factor = timedelta < 600 ? (600 - timedelta) / 100.0 : 0.0;
+            
+            // Amount factor: scales with current transaction size
+            const amt_factor = amount / 1500.0;
+            
+            // Amount ratio factor: scales if purchase exceeds typical rolling average history
+            const ratio_factor = amt_ratio > 1.5 ? (amt_ratio - 1.5) * 0.5 : 0.0;
+
+            // Apply continuous mathematical perturbations
+            features[16] = 0.2 - (amt_factor * 1.5) - (ratio_factor * 0.8); // V17 (negative correlation)
+            features[13] = 0.1 - (speed_factor * 0.8) - (amt_factor * 1.0); // V14 (negative correlation)
+            features[11] = -0.1 - (speed_factor * 0.7);                      // V12 (negative correlation)
+            features[9] = 0.0 - (amt_factor * 0.8);                         // V10 (negative correlation)
+            features[3] = -0.2 + (ratio_factor * 0.6) + (speed_factor * 0.5); // V4 (positive correlation)
+            features[10] = -0.1 + (speed_factor * 0.4);                     // V11 (positive correlation)
             
             // Append scaled numerical columns
             features.push(scaled_Amount);

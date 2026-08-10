@@ -568,13 +568,37 @@
             const scaled_Span = (span - 5000) / 10000;
             const scaled_MeanAmount = (meanamount - 100) / 250;
             
-            // Construct payload: 33 features. 
-            // V1-V28 are PCA features. We set them to mock values (near 0).
+            // Construct payload: 33 features.
+            // V1-V28 are PCA features. We set them to mock values (near 0) for normal transactions.
             const features = Array(28).fill(0.0);
+
+            // Dynamically simulate PCA component changes when transaction characteristics indicate fraud.
+            // This maps physical dashboard sliders to the anonymized PCA features.
             
-            // Add custom perturbations to V features for variety in testing
-            features[0] = (amount > 1000) ? -2.0 : 0.5; // Simulate low PCA components on high transactions
-            features[10] = (timedelta < 10) ? 3.0 : -0.2; // Speed correlation proxy
+            // 1. Amount ratio (high amount relative to normal history)
+            const amt_ratio = amount / Math.max(1, meanamount);
+            
+            // 2. Velocity multiplier (high speed = small delta)
+            const velocity_mult = timedelta < 10 ? 5.0 : (timedelta < 60 ? 2.5 : (timedelta < 300 ? 1.2 : 0.0));
+
+            // Perturb key PCA columns based on fraud patterns (negatively correlated V17, V14, V12, V10; positively correlated V4, V11)
+            if (amount > 1000 || amt_ratio > 10 || velocity_mult > 1) {
+                // High risk characteristics present
+                features[16] = -3.0 - (amount / 1000.0) - (amt_ratio / 5.0); // V17
+                features[13] = -4.0 - (velocity_mult * 1.5) - (amount / 1500.0); // V14
+                features[11] = -3.5 - (velocity_mult * 1.2); // V12
+                features[9] = -3.0 - (amount / 2000.0); // V10
+                features[3] = 2.5 + (amt_ratio / 10.0) + (velocity_mult * 0.8); // V4
+                features[10] = 2.0 + (velocity_mult * 0.5); // V11
+            } else {
+                // Legitimate but slightly perturbed baseline
+                features[16] = 0.2;
+                features[13] = 0.1;
+                features[11] = -0.1;
+                features[9] = 0.0;
+                features[3] = -0.2;
+                features[10] = -0.1;
+            }
             
             // Append scaled numerical columns
             features.push(scaled_Amount);

@@ -52,6 +52,9 @@ def train_and_log():
     print("Loading and preprocessing dataset...")
     X_train, X_test, y_train, y_test = load_and_preprocess()
     
+    # Set MLflow tracking URI to match SQLite database backend
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    
     # Set MLflow experiment name
     mlflow.set_experiment("Credit_Card_Fraud_Detection")
     

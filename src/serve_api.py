@@ -23,7 +23,13 @@ def load_model():
     global model
     if os.path.exists(MODEL_PATH):
         model = joblib.load(MODEL_PATH)
-        print("Model pre-warmed and loaded successfully from local storage.")
+        print("Model loaded successfully from local storage.")
+        # Pre-warm the C++ booster thread pool with a dummy prediction to eliminate first-request latency spikes
+        try:
+            model.predict_proba(np.zeros((1, 33)))
+            print("C++ booster thread pool pre-warmed successfully.")
+        except Exception as e:
+            print(f"Booster pre-warming failed: {e}")
     else:
         # Create a mock classifier if model file is not found (for demonstration/health readiness)
         from sklearn.dummy import DummyClassifier

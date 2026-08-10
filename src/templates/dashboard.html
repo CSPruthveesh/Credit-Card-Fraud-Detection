@@ -514,6 +514,15 @@
                 <input type="range" id="input-meanamount" min="1" max="5000" value="200" oninput="syncInputs('meanamount', this.value)">
             </div>
 
+            <!-- Behavioral Anomaly Intensity -->
+            <div class="form-group">
+                <div class="form-label" style="align-items: center;">
+                    <span>Behavioral Anomaly Intensity</span>
+                    <input type="number" id="input-num-intensity" min="0" max="5" step="0.1" value="1.0" class="num-input" oninput="syncInputs('intensity', this.value)">
+                </div>
+                <input type="range" id="input-intensity" min="0" max="5" step="0.1" value="1.0" oninput="syncInputs('intensity', this.value)">
+            </div>
+
             <div class="button-group">
                 <button class="btn btn-primary" onclick="scoreTransaction()">Analyze Transaction Risk</button>
             </div>
@@ -596,6 +605,7 @@
             const timedelta = parseFloat(document.getElementById('input-timedelta').value);
             const span = parseFloat(document.getElementById('input-span').value);
             const meanamount = parseFloat(document.getElementById('input-meanamount').value);
+            const intensity = parseFloat(document.getElementById('input-intensity').value);
             
             // Simulate standard scaling for numerical features
             // In a production app, scaling weights would be loaded from a pre-fit pipeline.
@@ -631,14 +641,13 @@
             // Amount ratio factor: scales if purchase exceeds typical rolling average history
             const ratio_factor = amt_ratio > 1.5 ? (amt_ratio - 1.5) * 0.5 : 0.0;
 
-            // Apply continuous mathematical perturbations with a dampener to prevent over-polarization
-            const dampener = 2.5;
-            features[16] = 0.2 - ((amt_factor * 1.5) + (ratio_factor * 0.8)) / dampener; // V17 (negative correlation)
-            features[13] = 0.1 - ((speed_factor * 0.8) + (amt_factor * 1.0)) / dampener; // V14 (negative correlation)
-            features[11] = -0.1 - (speed_factor * 0.7) / dampener;                       // V12 (negative correlation)
-            features[9] = 0.0 - (amt_factor * 0.8) / dampener;                          // V10 (negative correlation)
-            features[3] = -0.2 + ((ratio_factor * 0.6) + (speed_factor * 0.5)) / dampener; // V4 (positive correlation)
-            features[10] = -0.1 + (speed_factor * 0.4) / dampener;                      // V11 (positive correlation)
+            // Apply continuous mathematical perturbations scaled directly by Behavioral Anomaly Intensity
+            features[16] = 0.2 - ((amt_factor * 1.5) + (ratio_factor * 0.8)) * intensity / 2.0; // V17 (negative correlation)
+            features[13] = 0.1 - ((speed_factor * 0.8) + (amt_factor * 1.0)) * intensity / 2.0; // V14 (negative correlation)
+            features[11] = -0.1 - (speed_factor * 0.7) * intensity / 2.0;                       // V12 (negative correlation)
+            features[9] = 0.0 - (amt_factor * 0.8) * intensity / 2.0;                          // V10 (negative correlation)
+            features[3] = -0.2 + ((ratio_factor * 0.6) + (speed_factor * 0.5)) * intensity / 2.0; // V4 (positive correlation)
+            features[10] = -0.1 + (speed_factor * 0.4) * intensity / 2.0;                      // V11 (positive correlation)
             
             // Append scaled numerical columns
             features.push(scaled_Amount);

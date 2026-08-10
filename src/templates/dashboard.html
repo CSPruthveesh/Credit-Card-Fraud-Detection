@@ -632,18 +632,19 @@
                 const offset = 251.2 - (251.2 * prob);
                 circle.style.strokeDashoffset = offset;
                 
-                // Set gauge color based on risk severity
+                // Set gauge color based on risk severity and display the percentage
+                const display_pct = (prob * 100).toFixed(1) + '%';
                 if (prob < 0.2) {
                     circle.style.stroke = '#10B981'; // Green
-                    document.getElementById('result-status').innerText = "Approved";
+                    document.getElementById('result-status').innerText = `Approved (${display_pct})`;
                     document.getElementById('result-status').style.color = '#10B981';
                 } else if (prob < 0.65) {
                     circle.style.stroke = '#F59E0B'; // Yellow
-                    document.getElementById('result-status').innerText = "Warning: Moderate Risk";
+                    document.getElementById('result-status').innerText = `Warning: Moderate Risk (${display_pct})`;
                     document.getElementById('result-status').style.color = '#F59E0B';
                 } else {
                     circle.style.stroke = '#EF4444'; // Red
-                    document.getElementById('result-status').innerText = "ALERT: Critical Fraud Risk";
+                    document.getElementById('result-status').innerText = `ALERT: Critical Fraud Risk (${display_pct})`;
                     document.getElementById('result-status').style.color = '#EF4444';
                 }
                 

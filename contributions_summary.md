@@ -57,3 +57,12 @@ The resulting MLOps architecture features automated experiment tracking via MLfl
 - **Optimized model decision boundaries for business profit** by designing a cost-sensitive evaluation scorecard weighting chargeback losses ($100/missed fraud) against manual review overhead ($2/alert), converting statistical metrics into direct financial savings.
 - **Developed an interactive operational dashboard** featuring a real-time transaction testing playground, continuous PCA anomaly mapping, and two-way input bindings, reducing developer verification time and providing local risk reason codes.
 
+---
+
+## 5. Master Resume Points (Comprehensive System Focus)
+- **Architected a production-grade transaction fraud detection pipeline from scratch**, handling a 150MB dataset with severe target skew (0.17% fraud) by establishing a Feast feature store to standardize and synchronize feature ingestion schemas between offline training sets and online real-time queries.
+- **Bypassed standard oversampling noise (SMOTE)** by developing a custom Focal Loss objective function (gradient and Hessian calculations) for LightGBM and training XGBoost, CatBoost, and custom loss GBDTs, raising Average Precision (PR-AUC) to 0.8524.
+- **Captured complex, multi-hop fraud ring topologies** by architecting a heterogeneous bipartite Graph Neural Network (GNN) in PyTorch Geometric (PyG), mapping transactions to cardholder and merchant nodes with edge attributes to propagate structural risk embeddings across transaction loops.
+- **Achieved an ultra-low inference latency of under 2.0ms** (99.9% reduction from 2.28s) for real-time payment gateway scoring by building an asynchronous FastAPI microservice with startup RAM pre-warming, integrating a custom sigmoidal probability calibration blend to smooth uncalibrated GBDT outputs.
+- **Implemented proactive model maintenance and explainability guardrails** by integrating TreeSHAP for real-time transaction attribution reason codes, logging hyperparameter sets to MLflow, and deploying a two-sample Kolmogorov-Smirnov data drift monitor to trigger retraining loops.
+

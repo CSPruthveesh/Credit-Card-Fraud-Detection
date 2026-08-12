@@ -47,3 +47,13 @@ The resulting MLOps architecture features automated experiment tracking via MLfl
 - **Spearheaded the modular refactoring** of an exploratory monolithic notebook into a production-ready codebase, organizing models, API endpoints, feature stores, and pipeline logs.
 - **Established proactive operational guardrails** by programming a data drift auditor utilizing Kolmogorov-Smirnov statistical tests to detect population shift and automatically trigger retraining DAGs.
 - **Led end-to-end version control synchronization** of local model changes, Feast schema updates, and training adjustments to a remote GitHub repository.
+
+---
+
+## 4. Selected High-Impact Resume Bullets (Best Points)
+- **Reduced model scoring latency by 99.9%** (from 2.28s to under 2.0ms) to comply with sub-50ms banking SLAs by implementing an asynchronous FastAPI model serving microservice integrated with memory pre-warming and booster thread pool pre-initialization.
+- **Achieved an Average Precision (PR-AUC) of 0.8524** on extremely imbalanced transactions (0.17% minority class) without SMOTE noise by engineering a custom mathematical Focal Loss objective (gradient/Hessian calculation) to steer LightGBM training toward hard-to-classify examples.
+- **Eliminated training-set target leakage** and secured 100% unbiased generalization benchmarks by refactoring the data preprocessing pipeline to split the 150MB dataset before scaling, fitting `StandardScaler` instances strictly on training partitions.
+- **Optimized model decision boundaries for business profit** by designing a cost-sensitive evaluation scorecard weighting chargeback losses ($100/missed fraud) against manual review overhead ($2/alert), converting statistical metrics into direct financial savings.
+- **Developed an interactive operational dashboard** featuring a real-time transaction testing playground, continuous PCA anomaly mapping, and two-way input bindings, reducing developer verification time and providing local risk reason codes.
+

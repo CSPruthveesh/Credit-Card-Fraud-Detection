@@ -53,7 +53,7 @@ The production deployment features an asynchronous FastAPI microservice backed b
 
 ## 4. Final Curated Resume Section
 
-**Credit Card Fraud Detection Platform** | **Lead ML & Systems Engineer**
+**Credit Card Fraud Detection Platform** | **Real-Time Low-Latency Fraud Engine**
 - **Architected a production-ready credit card fraud detection platform from scratch**, processing a 150MB transaction dataset with severe class imbalance (0.17% fraud) by establishing a Feast feature store schema to synchronize offline training data with online SQLite inference caches.
 - **Achieved an Average Precision (PR-AUC) of 0.8524** without synthetic SMOTE noise by engineering a custom mathematical Focal Loss objective function (gradient and Hessian calculations) for LightGBM, steering model training toward hard-to-classify fraud patterns.
 - **Reduced model inference cold-start latency by 99.9%** (from 2.28s to under 1.8ms) to meet sub-50ms banking SLAs by building an asynchronous FastAPI microservice integrated with startup RAM pre-warming and booster thread pool pre-initialization.
